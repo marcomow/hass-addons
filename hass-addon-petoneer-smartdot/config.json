@@ -1,14 +1,21 @@
 {
-    "name": "Petoneer Smart Dot controller",
-    "version": "0.015",
-    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-    "slug": "hass_addon_petoneer_smartdot",
-    "description": "Control Petoneer Smart Dot from Home assistant",
-    "startup": "before",
-    "boot": "auto",
-    "map": [
-      "share:rw"
-    ],
-    "options": {},
-    "schema": {}
-  }
+  "name": "Petoneer Smart Dot controller",
+  "version": "0.016",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "slug": "hass_addon_petoneer_smartdot",
+  "description": "Control Petoneer Smart Dot from Home assistant",
+  "startup": "before",
+  "boot": "auto",
+  "host_network": true,
+  "map": [
+    "share:rw"
+  ],
+  "options": {},
+  "schema": {}
+}
