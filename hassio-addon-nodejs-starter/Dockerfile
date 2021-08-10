@@ -1,15 +1,20 @@
+  
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-ADD package.json /
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git
 
-RUN apk add --no-cache nodejs-npm
-
-# Copy data for add-on
-COPY run.sh /
+COPY package.json /
 COPY index.js /
+RUN cd / && npm install --unsafe-perm
+
+COPY run.sh /
 RUN chmod a+x /run.sh
 
 CMD [ "/run.sh" ]
