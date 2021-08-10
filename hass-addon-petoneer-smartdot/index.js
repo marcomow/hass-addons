@@ -1,20 +1,23 @@
 console.log('Petoneer addon ' + new Date());
-const { createBluetooth } = require('node-ble');
+
+const noble = require('@abandonware/noble');
+
 (async () => {
-    try {
-        const { bluetooth, destroy } = createBluetooth();
-        const adapter = await bluetooth.defaultAdapter();
-        const device = await adapter.waitDevice('34:14:B5:39:E9:A3');
-        await device.connect();
-        const gattServer = await device.gatt();
-        const service1 = await gattServer.getPrimaryService(0xfff0);
-        const characteristic1 = await service1.getCharacteristic(0xfff3);
-        const command = '0f0405000309';
-        const value = command.match(/.{1,2}/g).map(v => parseInt(v, 16));
-        await characteristic1.writeValue(new Uint8Array(value))
-        const buffer = await characteristic1.readValue()
-        console.log(buffer)
-    } catch (error) {
-        console.log(error);
-    }
+    noble.on('stateChange', async (state) => {
+        if (state === 'poweredOn') {
+            await noble.startScanningAsync([0xfff0], false);
+        }
+    });
+    noble.on('discover', async (peripheral) => {
+        await noble.stopScanningAsync();
+        await peripheral.connectAsync();
+        const { characteristics } = await peripheral.discoverSomeServicesAndCharacteristicsAsync([0xfff0]);
+        const batteryLevel = (await characteristics[0].readAsync())[0];
+
+        console.log(`${peripheral.address} (${peripheral.advertisement.localName}): ${batteryLevel}%`);
+
+        await peripheral.disconnectAsync();
+        process.exit(0);
+    });
+
 })();
