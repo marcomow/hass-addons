@@ -6,7 +6,6 @@
   "author": "marcomow",
   "license": "UNLICENSED",
   "dependencies": {
-    "@abandonware/noble": "^1.9.2-14",
-    "@types/noble": "^0.0.40"
+    "node-ble": "^1.5.0"
   }
 }
