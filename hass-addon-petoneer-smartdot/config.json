@@ -1,6 +1,6 @@
 {
     "name": "Home Assistant add-on to control Petoneer Smart Dot",
-    "version": "0.002",
+    "version": "0.003",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "slug": "hass_addon_petoneer_smartdot",
     "description": "Home Assistant add-on to control Petoneer Smart Dot",
