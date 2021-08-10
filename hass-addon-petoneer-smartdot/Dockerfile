@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 
 COPY package.json /
 COPY index.js /
-RUN cd / && npm install --unsafe-perm && npm cache verify && rm -rf /tmp/
+RUN cd / && npm install --unsafe-perm --network=host
 
 COPY run.sh /
 RUN chmod a+x /run.sh
