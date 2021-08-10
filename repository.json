@@ -1,4 +1,5 @@
 {
   "name": "marcomow Home Assistant add-on repo",
-  "url": "https://github.com/marcomow/hass-addons"
+  "url": "https://github.com/marcomow/hass-addons",
+  "maintainer": "marcomow"
 }
