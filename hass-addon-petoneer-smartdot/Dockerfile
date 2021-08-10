@@ -3,8 +3,6 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 RUN apt update && apt install -y mc bluetooth bluez libbluetooth-dev libudev-dev
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 RUN apk add --no-cache \
     nodejs \
     npm \
