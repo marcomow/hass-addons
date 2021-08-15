@@ -1,6 +1,6 @@
 {
   "name": "Petoneer Smart Dot controller",
-  "version": "0.020",
+  "version": "0.021",
   "arch": [
     "armhf",
     "armv7",
@@ -17,6 +17,5 @@
     "share:rw"
   ],
   "options": {},
-  "schema": {},
-  "image": "vandrham/node-ble"
+  "schema": {}
 }
