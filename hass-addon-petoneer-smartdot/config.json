@@ -1,6 +1,6 @@
 {
   "name": "Petoneer Smart Dot controller",
-  "version": "0.021",
+  "version": "0.001",
   "arch": [
     "armhf",
     "armv7",
@@ -8,7 +8,7 @@
     "amd64",
     "i386"
   ],
-  "slug": "hass_addon_petoneer_smartdot",
+  "slug": "smartdot",
   "description": "Control Petoneer Smart Dot from Home assistant",
   "startup": "before",
   "boot": "auto",
@@ -17,5 +17,11 @@
     "share:rw"
   ],
   "options": {},
-  "schema": {}
+  "schema": {},
+  "homeassistant_api": true,
+  "hassio_api": true,
+  "services": [
+    "mqtt:provide"
+  ],
+  "stdin": true
 }
