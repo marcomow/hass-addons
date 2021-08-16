@@ -28,7 +28,7 @@ condition: []
 action:
   - service: hassio.addon_stdin
     data:
-      addon: local_smartdot
+      addon: 96fe3986_smartdot
       input: '{{ states(''input_select.smartdot'') }}'
 mode: single
 ```
