@@ -5,7 +5,10 @@ const bluetoothController = new BluetoothController();
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
-process.stdin.on("data", (commandRaw) => {
+process.stdin.on("data", async (commandRaw) => {
     const command = (commandRaw + "").replace(/"/g, "").trim();
-    bluetoothController.sendPresetCommand(command);
+    const stoppedSuccessfully = await bluetoothController.sendPresetCommand('stop', true);
+    if (command !== 'stop' && stoppedSuccessfully) {
+        await bluetoothController.sendPresetCommand(command);
+    }
 });

@@ -1,6 +1,6 @@
 {
   "name": "Petoneer Smart Dot controller",
-  "version": "0.001",
+  "version": "0.002",
   "arch": [
     "armhf",
     "armv7",

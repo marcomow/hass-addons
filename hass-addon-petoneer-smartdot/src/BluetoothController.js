@@ -29,32 +29,36 @@ module.exports.BluetoothController = class BluetoothController {
             }
         });
     }
-    async sendPresetCommand(command) {
-        try {
-            if (!this.peripheral) {
-                console.log('no peripheral available');
-                return;
-            }
-            noble.reset();
-            if (!this.peripheral.mtu) {
-                await this.peripheral.connectAsync();
-            }
-            const services = await this.peripheral.discoverServicesAsync([serviceUuid]);
-            const movementService = services[0];
-            const characteristics = await movementService.discoverCharacteristicsAsync(['fff3']);
-            const movementCharacteristic = characteristics[0];
-            const stringCommand = commands[command];
-            if (!stringCommand) {
+    async sendPresetCommand(command, stayConnected = false) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                if (!this.peripheral) {
+                    console.log('no peripheral available');
+                    return;
+                }
+                noble.reset();
+                if (!this.peripheral.mtu) {
+                    await this.peripheral.connectAsync();
+                }
+                const services = await this.peripheral.discoverServicesAsync([serviceUuid]);
+                const movementService = services[0];
+                const characteristics = await movementService.discoverCharacteristicsAsync(['fff3']);
+                const movementCharacteristic = characteristics[0];
+                const stringCommand = commands[command];
+                if (!stringCommand) {
+                    await this.peripheral.disconnectAsync();
+                    throw new Error(`command "${command}" not recognized.`);
+                }
+                const buffer = Buffer.from(stringCommand, "hex");
+                const result = await movementCharacteristic.writeAsync(buffer, false);
+                // console.log({ command, stringCommand, buffer, result });
                 await this.peripheral.disconnectAsync();
-                throw new Error(`command "${command}" not recognized.`);
+                resolve(true);
+            } catch (error) {
+                console.log(error)
+                await this.peripheral.disconnectAsync();
+                resolve(false);
             }
-            const buffer = Buffer.from(stringCommand, "hex");
-            const result = await movementCharacteristic.writeAsync(buffer, false);
-            // console.log({ command, stringCommand, buffer, result });
-            await this.peripheral.disconnectAsync();
-        } catch (error) {
-            console.log(error)
-            await this.peripheral.disconnectAsync();
-        }
+        });
     }
 }
