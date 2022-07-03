@@ -1,0 +1,3 @@
+[submodule "hass-addon-petoneer-smartdot"]
+	path = hass-addon-petoneer-smartdot
+	url = https://github.com/marcomow/hass-addon-petoneer-smartdot
