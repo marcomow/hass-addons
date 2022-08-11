@@ -1,3 +1,6 @@
 [submodule "hass-addon-petoneer-smartdot"]
 	path = hass-addon-petoneer-smartdot
 	url = https://github.com/marcomow/hass-addon-petoneer-smartdot
+[submodule "hassio-addon-nodejs-starter"]
+	path = hassio-addon-nodejs-starter
+	url = https://github.com/marcomow/hassio-addon-nodejs-starter
