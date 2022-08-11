@@ -4,3 +4,6 @@
 [submodule "hassio-addon-nodejs-starter"]
 	path = hassio-addon-nodejs-starter
 	url = https://github.com/marcomow/hassio-addon-nodejs-starter
+[submodule "home-assistant-tp-link-router-addon"]
+	path = home-assistant-tp-link-router-addon
+	url = https://github.com/marcomow/home-assistant-tp-link-router-addon
